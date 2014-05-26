@@ -5,24 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 13:55:53 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 18:17:15 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lemipc.h>
+#include <ft_ncurse.h>
 
-int							main(int ac, char **av)
+int								main(void)
 {
-	t_player				*player;
+	t_ncurse					*ncurse;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
+	if (!(ncurse = init_ncurse()))
+	{
+		ERROR_LEMIPC_NCURSE;
+		return (EXIT_FAILURE);
+	}
+	loop(ncurse);
+	endwin();
 	return (EXIT_SUCCESS);
 }

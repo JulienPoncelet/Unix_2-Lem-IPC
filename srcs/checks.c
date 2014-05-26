@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 17:16:15 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 18:27:55 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemipc.h>
 
-int							main(int ac, char **av)
+int							check(t_board *board, int x, int y, int team)
 {
-	t_player				*player;
+	if (x < 0 || x >= X || y < 0 || y >= Y)
+		return (-1);
+	if (board->map[y][x] != 0 && board->map[y][x] != team)
+		return (y * Y + x);
+	return (-1);
+}
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+int							check_end(int end, int dest)
+{
+	if (dest >= X || dest >= Y)
+		return (-2);
+	return (end);
 }

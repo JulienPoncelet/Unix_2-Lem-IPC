@@ -6,46 +6,42 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/26 18:34:06 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/26 15:42:13 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lemipc
+NAME = lemipc_ncurse
 
 DIRSRC = ./srcs/
 DIROBJ = ./obj/
 
 SRC = main.c\
-	  check_input.c\
-	  t_player.c\
-	  shm.c\
-	  sem.c\
-	  lock.c\
-	  t_board.c\
-	  wait_ncurse.c\
+	  ncurse.c\
 	  loop.c\
-	  select_dest.c\
-	  checks.c\
-	  get_dir.c
+	  sem.c\
+	  shm.c\
+	  t_board.c\
+	  lock.c
 
 OBJ = $(SRC:.c=.o)
 
 DIROBJS = $(addprefix $(DIROBJ), $(OBJ))
 
-LFT = -L ./libft/ -lft
+LFT = -L ../libft/ -lft
+LNCURSES = -L /usr/lib -lncurses
 
 CC = clang
 CFLAGS = -Wall -Werror -Wextra -g -O3
 
-HEAD = -I ./includes -I ./libft/includes/
+HEAD = -I ./includes -I ../libft/includes/
 
 all: $(NAME)
 
 $(NAME): $(DIROBJS)
-	@$(MAKE) -C ./libft
-	@$(MAKE) -C ./ncurse
+	@$(MAKE) -C ../libft
 	@printf 'Compiling ./%s binaries : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(CC) $(CFLAGS) -o $@ $^ $(HEAD) $(LFT)
+	@$(CC) $(CFLAGS) -o $@ $^ $(HEAD) $(LFT) $(LNCURSES)
+	@mv $(NAME) ..
 	@printf 'Compiling ./%s : [\033[32mDONE\033[0m]\n' '$(NAME)'
 
 $(DIROBJ)%.o: $(DIRSRC)%.c
@@ -55,14 +51,12 @@ $(DIROBJ)%.o: $(DIRSRC)%.c
 clean:
 	@rm -rf $(DIROBJ)
 	@printf 'Clean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) clean -C ./libft
-	@$(MAKE) clean -C ./ncurse
+	@$(MAKE) clean -C ../libft
 
 fclean: clean
-	@rm -rf $(NAME) $(NAME)_ncurse
+	@rm -rf $(NAME)
 	@printf 'Fclean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) fclean -C ./libft
-	@$(MAKE) fclean -C ./ncurse
+	@$(MAKE) fclean -C ../libft
 
 re : fclean all
 

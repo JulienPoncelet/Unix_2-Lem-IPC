@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   wait_ncurse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 13:34:23 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 17:32:03 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemipc.h>
 
-int							main(int ac, char **av)
+void						wait_ncurse(t_player *player)
 {
-	t_player				*player;
+	int						end;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+	ft_putendl("Launch lemipc_ncurse to start the war!");
+	end = 0;
+	while (!end)
+	{
+		lock(player->semid);
+		if (player->board->pid != -1)
+			end = 1;
+		unlock(player->semid);
+		sleep(1);
+	}
 }

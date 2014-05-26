@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lock.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 13:20:27 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 16:54:06 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemipc.h>
 
-int							main(int ac, char **av)
+int							lock(int semid)
 {
-	t_player				*player;
+	struct sembuf			semlock;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+	semlock.sem_num = 0;
+	semlock.sem_op = -1;
+	semlock.sem_flg = 0;
+	if ((semop(semid, &semlock, 1)) == -1)
+		return (ERROR_LEMIPC);
+	return (0);
+}
+
+int							unlock(int semid)
+{
+	struct sembuf			semunlock;
+
+	semunlock.sem_num = 0;
+	semunlock.sem_op = 1;
+	semunlock.sem_flg = 0;
+	if ((semop(semid, &semunlock, 1)) == -1)
+		return (ERROR_LEMIPC);
+	return (0);
 }

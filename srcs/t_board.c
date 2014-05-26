@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 11:20:41 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 11:49:29 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/26 18:33:31 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,41 @@ t_board							*init_board(t_player *player)
 		ERROR_LEMIPC;
 		return (0);
 	}
+	lock(player->semid);
 	if (player->first == 1)
-		board->n = 1;
+		start_board(board, player);
 	else
+	{
 		board->n = board->n + 1;
+		put_player(board, player);
+	}
+	unlock(player->semid);
 	return (board);
+}
+
+void							start_board(t_board *board, t_player *player)
+{
+	int							x;
+	int							y;
+
+	board->n = 1;
+	y = 0;
+	while (y < Y)
+	{
+		x = 0;
+		while (x < X)
+		{
+			board->map[y][x] = 0;
+			x++;
+		}
+		y++;
+	}
+	put_player(board, player);
+	board->pid = -1;
 }
 
 int								free_board(t_player *player)
 {
-	player->board->n = player->board->n - 1;
 	if ((shmdt(player->board)) == -1)
 		return (ERROR_LEMIPC);
 	return (0);

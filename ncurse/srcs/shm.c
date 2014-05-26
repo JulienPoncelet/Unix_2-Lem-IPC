@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 10:39:27 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 14:47:52 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <lemipc.h>
+#include <ft_ncurse.h>
 
-int							main(int ac, char **av)
+int				init_shm(int size, char *name, int key_int)
 {
-	t_player				*player;
+	key_t		key;
+	int			shmid;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+	if ((key = ftok(name, (key_t)key_int)) == -1)
+		return (ERROR_LEMIPC_NCURSE);
+	if ((shmid = shmget(key, size, SHM_FLAG)) == - 1)
+		return (ERROR_LEMIPC_NCURSE);
+	return (shmid);
+}
+
+int				free_shm(int shmid)
+{
+	if ((shmctl(shmid, IPC_RMID, 0)) == -1)
+		return (ERROR_LEMIPC_NCURSE);
+	return (0);
 }

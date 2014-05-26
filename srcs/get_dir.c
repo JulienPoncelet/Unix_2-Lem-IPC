@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 18:17:33 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 18:33:22 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemipc.h>
 
-int							main(int ac, char **av)
+int								get_dir(t_player *player, int dest)
 {
-	t_player				*player;
+	int							x;
+	int							y;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+	x = dest % Y;
+	y = dest / Y;
+	printf("Check dir from [%d][%d] to [%d][%d]\n", player->cury, player->curx, y, x);
+	sleep(5);
+	return (0);
 }

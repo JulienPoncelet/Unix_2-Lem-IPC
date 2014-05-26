@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/26 10:12:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:24:51 by jponcele         ###   ########.fr       */
+/*   Created: 2014/05/26 16:54:21 by jponcele          #+#    #+#             */
+/*   Updated: 2014/05/26 18:33:35 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemipc.h>
 
-int							main(int ac, char **av)
+void					loop(t_player *player)
 {
-	t_player				*player;
+	int					end;
+	int					dest;
+	int					dir;
 
-	ac--;
-	av++;
-	check_input(ac, av);
-	if (!(player = init_player(ft_atoi(av[0]))))
-		ERROR_LEMIPC;
-	wait_ncurse(player);
-	loop(player);
-	free_player(player);
-	return (EXIT_SUCCESS);
+	end = -3;
+	while (end)
+	{
+		lock(player->semid);
+		dest = select_dest(player);
+		if (dest != -2)
+		{
+			dir = get_dir(player, dest);
+		}
+		unlock(player->semid);
+		end++;
+		sleep(1);
+	}
 }
