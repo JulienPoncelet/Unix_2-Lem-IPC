@@ -16,10 +16,24 @@ int								get_dir(t_player *player, int dest)
 {
 	int							x;
 	int							y;
+	int							dx;
+	int							dy;
+	int							delta;
 
 	x = dest % Y;
 	y = dest / Y;
-	printf("Check dir from [%d][%d] to [%d][%d]\n", player->cury, player->curx, y, x);
-	sleep(5);
-	return (0);
+	dx = player->curx - x;
+	dy = player->cury - y;
+	dx = (!dx) ? dy + 1 : dx;
+	dy = (!dy) ? dx + 1 : dy;
+	delta = (dx < dy) ? dx : dy;
+	if (delta == dx)
+	{
+		if (dx > 0)
+			return (RIGHT);
+		return (LEFT);
+	}
+	else if (dy > 0)
+		return (UP);
+	return (DOWN);
 }

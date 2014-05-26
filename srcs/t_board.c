@@ -25,10 +25,8 @@ t_board							*init_board(t_player *player)
 	if (player->first == 1)
 		start_board(board, player);
 	else
-	{
 		board->n = board->n + 1;
-		put_player(board, player);
-	}
+	put_player(board, player);
 	unlock(player->semid);
 	return (board);
 }
@@ -50,8 +48,8 @@ void							start_board(t_board *board, t_player *player)
 		}
 		y++;
 	}
-	put_player(board, player);
 	board->pid = -1;
+	(void)player;
 }
 
 int								free_board(t_player *player)

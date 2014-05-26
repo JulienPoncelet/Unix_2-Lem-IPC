@@ -136,4 +136,11 @@ int							check_end(int end, int dest);
 
 int							get_dir(t_player *player, int dest);
 
+/*
+**							move.c
+*/
+
+void						move(t_player *player, int dir);
+void						move2(t_player *player, int dir);
+
 #endif

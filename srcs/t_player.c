@@ -56,6 +56,8 @@ int								put_player(t_board *board, t_player *player)
 		if (board->map[y][x] == 0)
 		{
 			board->map[y][x] = player->team;
+			player->curx = x;
+			player->cury = y;
 			end = 1;
 		}
 	}

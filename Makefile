@@ -26,7 +26,8 @@ SRC = main.c\
 	  loop.c\
 	  select_dest.c\
 	  checks.c\
-	  get_dir.c
+	  get_dir.c\
+	  move.c
 
 OBJ = $(SRC:.c=.o)
 

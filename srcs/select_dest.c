@@ -14,37 +14,13 @@
 
 int						select_dest(t_player *player)
 {
-	int					end;
-	int					x;
-	int					y;
-
-	end = 0;
-	y = 0;
-	while (!end && y < Y)
-	{
-		x = 0;
-		while (!end && x < X)
-		{
-			if (player->board->map[y][x] == player->team)
-				end = 1;
-			x++;
-		}
-		y++;
-	}
-	player->curx = x - 1;
-	player->cury = y - 1;
-	return (get_dest(player, --x, --y));
-}
-
-int						get_dest(t_player *player, int x, int y)
-{
 	int					dest;
 	int					end;
 
 	dest = 1;
 	end = -1;
 	while (end == -1)
-		end = get_dest_loop(player, dest++, x, y);
+		end = get_dest_loop(player, dest++, player->curx, player->cury);
 	return (end);
 }
 

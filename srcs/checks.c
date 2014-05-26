@@ -25,5 +25,7 @@ int							check_end(int end, int dest)
 {
 	if (dest >= X || dest >= Y)
 		return (-2);
+	if (end != -1 && dest == 1)
+		return (-2);
 	return (end);
 }

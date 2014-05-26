@@ -25,7 +25,11 @@ void					loop(t_player *player)
 		dest = select_dest(player);
 		if (dest != -2)
 		{
+		printf("1\n");
 			dir = get_dir(player, dest);
+		printf("2\n");
+			move(player, dir);
+		printf("3\n");
 		}
 		unlock(player->semid);
 		end++;
