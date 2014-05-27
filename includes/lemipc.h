@@ -6,11 +6,11 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:13:26 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:42:56 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:48:53 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMPIC_H
+#ifndef LEMIPC_H
 # define LEMIPC_H
 
 #include <stdio.h>

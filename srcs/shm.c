@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:39:27 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 13:39:00 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:51:00 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int				init_shm(t_player *player, int size, char *name, int key_int)
 
 	if ((key = ftok(name, (key_t)key_int)) == -1)
 		return (ERROR_LEMIPC);
-	if ((shmid = shmget(key, size, SHM_FLAG | IPC_EXCL)) == - 1)
+	if ((shmid = shmget(key, size, SHM_FLAG | IPC_EXCL)) == -1)
 	{
-		if ((shmid = shmget(key, size, SHM_FLAG)) == - 1)
+		if ((shmid = shmget(key, size, SHM_FLAG)) == -1)
 			return (ERROR_LEMIPC);
 	}
 	else

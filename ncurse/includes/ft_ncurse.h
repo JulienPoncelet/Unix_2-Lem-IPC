@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 13:54:53 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:43:11 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:50:03 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@
 # define SHM_FLAG				SHM_R | SHM_W
 # define SEM_FLAG				SHM_R | SHM_W
 
-typedef struct				s_board
+typedef struct					s_board
 {
-	int						n;
-	int						map[Y][X];
-	pid_t					pid;
-	int						proie;
-}							t_board;
+	int							n;
+	int							map[Y][X];
+	pid_t						pid;
+	int							proie;
+}								t_board;
 
 typedef struct					s_ncurse
 {
@@ -64,30 +64,30 @@ void							print_line(t_ncurse *ncurses, int y);
 void							print_row(int y);
 
 /*
-**							shm.c
+**								shm.c
 */
 
-int							init_shm(int size, char *name, int key_int);
-int							free_shm(int shmid);
+int								init_shm(int size, char *name, int key_int);
+int								free_shm(int shmid);
 
 /*
-**							sem.c
+**								sem.c
 */
 
-int							init_sem(char *name, int key_int);
-int							free_sem(int semid);
+int								init_sem(char *name, int key_int);
+int								free_sem(int semid);
 
 /*
-**							t_board.c
+**								t_board.c
 */
 
-t_board						*init_board(t_ncurse *ncurse);
+t_board							*init_board(t_ncurse *ncurse);
 
 /*
-**							lock.c
+**								lock.c
 */
 
-int							lock(int semid);
-int							unlock(int semid);
+int								lock(int semid);
+int								unlock(int semid);
 
 #endif

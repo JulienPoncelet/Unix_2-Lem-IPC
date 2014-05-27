@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/27 13:40:35 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:42:37 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:50:48 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int								is_valid(t_player *player, int x, int y)
 	if (x < 0 || x >= X || y < 0 || y >= Y)
 		return (0);
 	if (player->board->map[y][x])
-		return(0);
+		return (0);
 	return (1);
 }

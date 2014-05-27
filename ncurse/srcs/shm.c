@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:39:27 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 14:47:52 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:50:21 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int				init_shm(int size, char *name, int key_int)
 
 	if ((key = ftok(name, (key_t)key_int)) == -1)
 		return (ERROR_LEMIPC_NCURSE);
-	if ((shmid = shmget(key, size, SHM_FLAG)) == - 1)
+	if ((shmid = shmget(key, size, SHM_FLAG)) == -1)
 		return (ERROR_LEMIPC_NCURSE);
 	return (shmid);
 }
