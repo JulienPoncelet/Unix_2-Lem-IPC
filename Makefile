@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/26 18:34:06 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/27 12:06:58 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ SRC = main.c\
 	  select_dest.c\
 	  checks.c\
 	  get_dir.c\
-	  move.c
+	  move.c\
+	  check_dead.c\
+	  check_end.c
 
 OBJ = $(SRC:.c=.o)
 

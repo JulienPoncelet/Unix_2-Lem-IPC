@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 14:02:35 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:15:59 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 10:58:18 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_ncurse					*init_ncurse2(t_ncurse *ncurse)
 	noecho();
 	start_color();
 	init_pair(8, COLOR_WHITE, COLOR_BLACK);
-	init_pair(1, COLOR_WHITE, COLOR_RED);
-	init_pair(2, COLOR_WHITE, COLOR_GREEN);
-	init_pair(3, COLOR_WHITE, COLOR_YELLOW);
-	init_pair(4, COLOR_WHITE, COLOR_BLUE);
-	init_pair(5, COLOR_WHITE, COLOR_MAGENTA);
-	init_pair(6, COLOR_WHITE, COLOR_CYAN);
-	init_pair(7, COLOR_WHITE, COLOR_WHITE);
+	init_pair(1, COLOR_BLACK, COLOR_RED);
+	init_pair(2, COLOR_BLACK, COLOR_GREEN);
+	init_pair(3, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(4, COLOR_BLACK, COLOR_BLUE);
+	init_pair(5, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(6, COLOR_BLACK, COLOR_CYAN);
+	init_pair(7, COLOR_BLACK, COLOR_WHITE);
 	return (ncurse);
 }

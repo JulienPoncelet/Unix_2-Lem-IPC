@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:37:01 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 17:02:30 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 12:28:30 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ int								free_player(t_player *player)
 	lock(player->semid);
 	last = (player->board->n == 1) ? 1 : 0;
 	player->board->n--;
+	player->board->map[player->cury][player->curx] = 0;
+	ft_putstr("Player left: ");
+	ft_putnbrendl(player->board->n);
 	unlock(player->semid);
 	if (last)
 	{

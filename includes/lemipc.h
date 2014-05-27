@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:13:26 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 18:33:24 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 12:07:50 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 
 # define X					20
 # define Y					15
+
+# define MAX_ROUND			20
 
 enum						e_dir
 {
@@ -142,5 +144,21 @@ int							get_dir(t_player *player, int dest);
 
 void						move(t_player *player, int dir);
 void						move2(t_player *player, int dir);
+int							is_valid(int x, int y);
+
+/*
+**							check_dead.c
+*/
+
+int							check_dead(t_player *player, int x, int y);
+int							*clean_tab(int *tab);
+int							check_dead2(t_player *player, int **tab, int x,
+		int y);
+
+/*
+**							check_end.c
+*/
+
+int							check_end_game(t_player *player);
 
 #endif
