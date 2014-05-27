@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 16:54:21 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 16:59:15 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 17:44:51 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void					loop(t_player *player)
 
 	k = 0;
 	end = 0;
-	while (!end && k < MAX_ROUND)
+	while (!end && k++ < MAX_ROUND)
 	{
 		lock(player->semid);
 		end = check_dead(player, player->curx - 1, player->cury - 1);
@@ -36,7 +36,6 @@ void					loop(t_player *player)
 			}
 		}
 		unlock(player->semid);
-		k++;
 		end = (end) ? end : check_end_game(player);
 		sleep(1);
 	}

@@ -6,14 +6,12 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 13:54:53 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 16:10:35 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 17:43:01 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NCURSE_H
 # define FT_NCURSE_H
-
-#include <stdio.h>
 
 # include						<libft.h>
 # include						<ncurses.h>

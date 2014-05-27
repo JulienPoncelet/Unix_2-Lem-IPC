@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/27 14:06:23 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/27 17:43:49 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ HEAD = -I ./includes -I ./libft/includes/
 all: $(NAME)
 
 $(NAME): $(DIROBJS)
-	@$(MAKE) -C ./libft
-	@$(MAKE) -C ./ncurse
+	@$(MAKE) -s -C ./libft
+	@$(MAKE) -s -C ./ncurse
 	@printf 'Compiling ./%s binaries : [\033[32mDONE\033[0m]\n' '$(NAME)'
 	@$(CC) $(CFLAGS) -o $@ $^ $(HEAD) $(LFT)
 	@printf 'Compiling ./%s : [\033[32mDONE\033[0m]\n' '$(NAME)'
@@ -59,14 +59,14 @@ $(DIROBJ)%.o: $(DIRSRC)%.c
 clean:
 	@rm -rf $(DIROBJ)
 	@printf 'Clean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) clean -C ./libft
-	@$(MAKE) clean -C ./ncurse
+	@$(MAKE) -s clean -C ./libft
+	@$(MAKE) -s clean -C ./ncurse
 
 fclean: clean
 	@rm -rf $(NAME) $(NAME)_ncurse
 	@printf 'Fclean %s : [\033[32mDONE\033[0m]\n' '$(NAME)'
-	@$(MAKE) fclean -C ./libft
-	@$(MAKE) fclean -C ./ncurse
+	@$(MAKE) -s fclean -C ./libft
+	@$(MAKE) -s fclean -C ./ncurse
 
 re : fclean all
 

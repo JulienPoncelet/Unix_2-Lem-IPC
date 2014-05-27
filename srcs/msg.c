@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/27 14:00:28 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 15:34:24 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 17:45:00 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int								init_msg(t_player *player, char *name)
 	return (0);
 }
 
-int							free_msg(t_player *player)
+int								free_msg(t_player *player)
 {
-	int						i;
+	int							i;
 
 	i = 0;
 	while (i < MAX_TEAM)

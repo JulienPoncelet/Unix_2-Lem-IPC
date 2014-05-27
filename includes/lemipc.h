@@ -6,14 +6,12 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:13:26 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 17:07:36 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 17:42:55 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIPC_H
 # define LEMIPC_H
-
-#include <stdio.h>
 
 # include					<libft.h>
 # include					<signal.h>
