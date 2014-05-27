@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 13:54:53 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:50:03 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 16:10:35 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@
 # define SHM_FLAG				SHM_R | SHM_W
 # define SEM_FLAG				SHM_R | SHM_W
 
+# define MAX_TEAM				7
+
 typedef struct					s_board
 {
 	int							n;
 	int							map[Y][X];
 	pid_t						pid;
-	int							proie;
+	int							first[MAX_TEAM];
+	int							dest[MAX_TEAM];
 }								t_board;
 
 typedef struct					s_ncurse

@@ -6,7 +6,7 @@
 #    By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 12:29:52 by jponcele          #+#    #+#              #
-#    Updated: 2014/05/27 12:06:58 by jponcele         ###   ########.fr        #
+#    Updated: 2014/05/27 14:06:23 by jponcele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = main.c\
 	  t_player.c\
 	  shm.c\
 	  sem.c\
+	  msg.c\
 	  lock.c\
 	  t_board.c\
 	  wait_ncurse.c\

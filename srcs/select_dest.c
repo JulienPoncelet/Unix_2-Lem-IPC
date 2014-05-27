@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 17:02:36 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:48:17 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 16:59:28 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@ int						select_dest(t_player *player)
 	int					dest;
 	int					end;
 
-	dest = 1;
 	end = -1;
+	if (!player->first_team)
+		end = player->board->dest[player->team - 1];
+	end = (end == -2) ? -1 : end;
+	dest = 1;
 	while (end == -1)
 		end = get_dest_loop(player, dest++, player->curx, player->cury);
+	if (player->first_team)
+		player->board->dest[player->team - 1] = end;
 	return (end);
 }
 

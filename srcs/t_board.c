@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 11:20:41 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 10:44:48 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 16:28:14 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void							start_board(t_board *board, t_player *player)
 		y++;
 	}
 	board->pid = -1;
+	x = 0;
+	while (x < MAX_TEAM)
+	{
+		board->first[x] = 0;
+		board->dest[x] = -1;
+		x++;
+	}
 	(void)player;
 }
 

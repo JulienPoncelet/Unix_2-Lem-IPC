@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:13:26 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 13:48:53 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 17:07:36 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include					<signal.h>
 # include					<sys/ipc.h>
 # include					<sys/types.h>
+# include					<sys/msg.h>
 # include					<sys/sem.h>
 # include					<sys/shm.h>
 # include					<time.h>
@@ -31,11 +32,13 @@
 # define SHM_FILE			"./game/board"
 # define SHM_FLAG			IPC_CREAT | SHM_R | SHM_W
 # define SEM_FLAG			IPC_CREAT | SHM_R | SHM_W
+# define MSG_FLAG			IPC_CREAT | SHM_R | SHM_W
 
 # define X					20
 # define Y					15
 
-# define MAX_ROUND			50
+# define MAX_TEAM			7
+# define MAX_ROUND			100
 
 enum						e_dir
 {
@@ -47,7 +50,8 @@ typedef struct				s_board
 	int						n;
 	int						map[Y][X];
 	pid_t					pid;
-	int						dest;
+	int						first[MAX_TEAM];
+	int						dest[MAX_TEAM];
 }							t_board;
 
 typedef struct				s_player
@@ -56,9 +60,12 @@ typedef struct				s_player
 	int						first;
 	int						shmid;
 	int						semid;
+	int						msgid[MAX_TEAM];
 	t_board					*board;
 	int						curx;
 	int						cury;
+	int						first_team;
+	int						last_dir;
 }							t_player;
 
 /*
@@ -71,7 +78,8 @@ int							check_input(int ac, char **av);
 **							t_player.c
 */
 
-t_player					*init_player(int player);
+t_player					*init_player(int team);
+t_player					*init_player2(t_player *player);
 int							put_player(t_board *board, t_player *player);
 int							free_player(t_player *player);
 
@@ -91,6 +99,13 @@ int							init_sem(char *name, int key_int);
 int							free_sem(int semid);
 
 /*
+**							msg.c
+*/
+
+int							init_msg(t_player *player, char *name);
+int							free_msg(t_player *player);
+
+/*
 **							lock.c
 */
 
@@ -103,6 +118,8 @@ int							unlock(int semid);
 
 t_board						*init_board(t_player *player);
 void						start_board(t_board *board, t_player *player);
+void						init_first(t_board *board);
+void						init_dest(t_board *board);
 int							free_board(t_player *player);
 
 /*
@@ -145,7 +162,7 @@ int							get_dir(t_player *player, int dest);
 
 int							move(t_player *player, int dir, int x, int y);
 int							move2(t_player *player, int dir, int x, int y);
-int							is_valid(t_player *player, int x, int y);
+int							is_valid(t_player *player, int x, int y, int dir);
 
 /*
 **							check_dead.c

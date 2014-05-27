@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 10:37:01 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 12:28:30 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 16:15:52 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ t_player						*init_player(int team)
 		return (NULL);
 	}
 	if ((player->semid = init_sem(SHM_FILE, 42)) == FT_ERROR)
+	{
+		ERROR_LEMIPC;
+		return (NULL);
+	}
+	return (init_player2(player));
+}
+
+t_player						*init_player2(t_player *player)
+{
+	if ((init_msg(player, SHM_FILE)) == FT_ERROR)
 	{
 		ERROR_LEMIPC;
 		return (NULL);
@@ -61,6 +71,8 @@ int								put_player(t_board *board, t_player *player)
 			end = 1;
 		}
 	}
+	player->first_team = (board->first[player->team - 1]) ? 0 : 1;
+	board->first[player->team - 1] = 1;
 	return (0);
 }
 
@@ -79,6 +91,7 @@ int								free_player(t_player *player)
 	{
 		kill(player->board->pid, SIGINT);
 		free_board(player);
+		free_msg(player);
 		free_sem(player->semid);
 		free_shm(player->shmid);
 	}
