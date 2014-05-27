@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/27 10:45:00 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 12:29:37 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:21:23 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int						check_dead(t_player *player, int x, int y)
 		i = 0;
 		while (i < 3 && !end)
 		{
-			if (is_valid(x + i, y + j))
+			if (is_valid_for_dead(x + i, y + j))
 				end = check_dead2(player, &tab, x + i, y + j);
 			i++;
 		}
@@ -67,4 +67,11 @@ int						check_dead2(t_player *player, int **tab, int x, int y)
 	}
 	*tab = cur_tab;
 	return (0);
+}
+
+int						is_valid_for_dead(int x, int y)
+{
+	if (x < 0 || x >= X || y < 0 || y >= Y)
+		return (0);
+	return (1);
 }

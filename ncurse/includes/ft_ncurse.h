@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 13:54:53 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/26 18:33:28 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:43:11 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct				s_board
 	int						n;
 	int						map[Y][X];
 	pid_t					pid;
+	int						proie;
 }							t_board;
 
 typedef struct					s_ncurse

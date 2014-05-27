@@ -6,7 +6,7 @@
 /*   By: jponcele <jponcele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/26 16:54:21 by jponcele          #+#    #+#             */
-/*   Updated: 2014/05/27 12:28:56 by jponcele         ###   ########.fr       */
+/*   Updated: 2014/05/27 13:26:12 by jponcele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void					loop(t_player *player)
 			if (dest != -2)
 			{
 				dir = get_dir(player, dest);
-				move(player, dir);
+				move(player, dir, player->curx, player->cury);
 			}
 		}
 		unlock(player->semid);
